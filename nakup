@@ -1,0 +1,75 @@
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char nazov1[100], nazov2[100], nazov3[100];
+    float cena1, cena2, cena3;
+    int pocet1, pocet2, pocet3;
+    float celkovaCena, cenaPoZlave;
+
+    // Načítanie 1. produktu
+    printf("Zadaj nazov 1. produktu: ");
+    fgets(nazov1, 100, stdin);
+    nazov1[strcspn(nazov1, "\n")] = '\0';
+
+    printf("Zadaj cenu 1. produktu: ");
+    scanf("%f", &cena1);
+
+    printf("Zadaj pocet kusov: ");
+    scanf("%d", &pocet1);
+
+    getchar();
+
+    // Načítanie 2. produktu
+    printf("\nZadaj nazov 2. produktu: ");
+    fgets(nazov2, 100, stdin);
+    nazov2[strcspn(nazov2, "\n")] = '\0';
+
+    printf("Zadaj cenu 2. produktu: ");
+    scanf("%f", &cena2);
+
+    printf("Zadaj pocet kusov: ");
+    scanf("%d", &pocet2);
+
+    getchar();
+
+    // Načítanie 3. produktu
+    printf("\nZadaj nazov 3. produktu: ");
+    fgets(nazov3, 100, stdin);
+    nazov3[strcspn(nazov3, "\n")] = '\0';
+
+    printf("Zadaj cenu 3. produktu: ");
+    scanf("%f", &cena3);
+
+    printf("Zadaj pocet kusov: ");
+    scanf("%d", &pocet3);
+
+    // Výpočet celkovej ceny
+    celkovaCena = (cena1 * pocet1) +
+                  (cena2 * pocet2) +
+                  (cena3 * pocet3);
+
+    // Výpis nákupu
+    printf("\n--- NAKUP ---\n");
+    printf("%s - %.2f EUR x %d ks = %.2f EUR\n",
+           nazov1, cena1, pocet1, cena1 * pocet1);
+
+    printf("%s - %.2f EUR x %d ks = %.2f EUR\n",
+           nazov2, cena2, pocet2, cena2 * pocet2);
+
+    printf("%s - %.2f EUR x %d ks = %.2f EUR\n",
+           nazov3, cena3, pocet3, cena3 * pocet3);
+
+    printf("\nCelkova cena: %.2f EUR\n", celkovaCena);
+
+    // Bonus – zľava 10 %
+    if (celkovaCena > 50) {
+        cenaPoZlave = celkovaCena * 0.90;
+
+        printf("Zlava 10 %%: %.2f EUR\n", celkovaCena * 0.10);
+        printf("Cena po zlave: %.2f EUR\n", cenaPoZlave);
+    }
+
+    return 0;
+}
