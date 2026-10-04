@@ -1,0 +1,63 @@
+
+#include <stdio.h>
+
+typedef struct {
+    char nazov[50];
+    int kusy;
+    float cena;
+} Produkt;
+
+int main() {
+    int pocetProduktov;
+    float celkovaCena = 0.0;
+
+    printf("Zadajte pocet produktov (max 10): ");
+    scanf("%d", &pocetProduktov);
+
+    if (pocetProduktov < 1 || pocetProduktov > 10) {
+        printf("Neplatny vstup. Zadajte cislo od 1 do 10.\n");
+        return 1;
+    }
+
+    Produkt zoznam[10];
+
+    for (int i = 0; i < pocetProduktov; i++) {
+        printf("\n--- PRODUKT %d ---\n", i + 
+
+        printf("Nazov produktu: ");
+        scanf("%49s", zoznam[i].nazov);
+
+        printf("Cena produktu: ");
+        scanf("%f", &zoznam[i].cena);
+
+        printf("Pocet kusov: ");
+        scanf("%d", &zoznam[i].kusy);
+    }
+
+    printf("\n\n--- PREHLAD NAKUPU ---\n");
+
+    for (int i = 0; i < pocetProduktov; i++) {
+        float cenaSpolu = zoznam[i].cena * zoznam[i].kusy;
+        celkovaCena = celkovaCena + cenaSpolu;
+
+        printf("%d. %s | Cena za kus: %.2f | Pocet: %d ks | Spolu: %.2f EUR\n",
+               i + 1,
+               zoznam[i].nazov,
+               zoznam[i].cena,
+               zoznam[i].kusy,
+               cenaSpolu);
+    }
+
+    printf("--------------------------------------\n");
+    printf("CELKOVA SPOLU: %.2f EUR\n", celkovaCena);
+
+    if (celkovaCena > 50.0) {
+        float cenaPoZlave = celkovaCena * 0.90;
+
+        printf("\nZiskavas zlavu 10%% (nakup nad 50 EUR)!\n");
+        printf("Cena po zleve: %.2f EUR\n", cenaPoZlave);
+    }
+
+    return 0;
+}
+
